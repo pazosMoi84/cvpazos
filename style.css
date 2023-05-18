@@ -1,0 +1,848 @@
+/****************** Custom Properties ************/
+
+:root {
+  --black-color: #000;
+  --black-alpha-color: rgba(0, 0, 0, 0.5);
+  --firt-color: #d90062;
+  --firt-alpha-color: rgba(217, 0, 98, 0.75);
+  --gray-light-color: #f3f3f3;
+  --gray-color: #ccc;
+  --gray-dark-color: #666;
+  --second-color: #14192d;
+  --second-alpha-color: rgba(20, 25, 45, 0.75);
+  --third-color: #501464;
+  --third-alpha-color: rgba(80, 20, 100, 0.75);
+  --white-color: #fff;
+  --link-color: #509ee3;
+  --title-color: #333;
+  --text-color: #222;
+  --white-alpha-color: rgba(255, 255, 255, 0.5);
+  --font: "Releway, sans-serif";
+  /* google font buscar releway */
+  --max-with: 1200px;
+  --header-height: 4rem; /* 1rem=16px  */
+}
+
+/****************** Reset **********************/
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* crea el efecto del desplazamiento entre cada enlace */
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  /* overflow-x: hidden; */
+  /* oculta la barra de desplazamiento de la X de la imagen */
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  transition: all 0.5s ease-out;
+}
+a:hover {
+  opacity: 0.75;
+}
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+h5 {
+  margin: 0;
+  font-size: 0.55rem;
+}
+h6 {
+  margin: 0;
+  font-size: 0.7rem;
+}
+img {
+  /* ajusta la imagen al tamano de la pantalla */
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/*********************************************    Components   ***********************************************************/
+/*********************************************       Menu      ***********************************************************/
+/* pinta el boton con un contorno rojo y fondo azul marino */
+.menu-btn {
+  outline: thin solid var(--firt-color);
+  border: 0;
+  cursor: pointer;
+  background-color: var(--second-color);
+}
+/* pinta las lineas verticales en color rojo */
+.menu-btn svg {
+  fill: var(--firt-color);
+}
+
+.menu {
+  /*  */
+  /* display: none; */
+  position: fixed;
+  left: 0px;
+  bottom: var(--header-height); /* 4 rem = 16px */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--second-color);
+
+  /*Con opacity oculta el menu para configurarlo con javascrip y hacer funcionar el boton  de ocultar y mostrar*/
+  opacity: 0;
+  pointer-events: none;
+  /* permite activar a lo enlaces la reacion a la interactividad de los enlaces */
+  transition: opacity 0.5s ease;
+}
+
+/*personaliza los enlances del menu, lo aumenta a 1.5, lo hace negrita, centra el texto, y le aplica el color rojo firt color   */
+.menu a {
+  /*  */
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--firt-color);
+}
+
+/*estado hover: es cuando el raton esta por encima del enlace, realiza una accion, en este caso aplica el color blanco a las letras y un fondo rojo  */
+.menu a:hover {
+  color: var(--white-color);
+  background-color: var(--firt-color);
+}
+
+/*----------------------------------------------------------------------------------------------------
+ permite cambiar el estado de la opacidad en 0 y 1 
+ */
+.menu.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+
+                                  MEDIAS QUERYS REUTILIZABLE
+                                
+                                PARA PANTALLA COMPLETA  1024PX
+
+----------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  /* oculta el boton del menu el version Desktop */
+  .menu-btn {
+    display: none;
+  }
+
+  .menu {
+    /* Static.  es el valor por defecto, significa que el elemento respeta el flujo del documento HTML por lo que no se puede mover(top,left,right,bottom) ni posicionar(relative) */
+    position: static;
+    width: auto;
+    /* se ajusta al contenido del menu automaticamente */
+    flex-direction: row;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu a {
+    padding: 0 1rem;
+  }
+
+  .menu a:hover {
+    background-color: transparent;
+  }
+  /* 1:36 min */
+  /* hacer un header  con el archivo position y probar el fixe y stike */
+  .menu a:last-child {
+    padding-right: 0;
+  }
+}
+
+/*********************************************   Utilities   ***********************************************************/
+/* En esta seccion se declaran clases, para despues se puedean reutilizar en otras clases */
+.bg-gray-light {
+  /* esta clase es reutilizada por varias clases,services */
+  background-color: var(--gray-light-color);
+}
+.box-shadow-1 {
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Boton: se personaliza este boton donde se puede reutilizar en otras partes del codigo*/
+.btn {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white-color);
+  background-color: var(--firt-color);
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-with);
+}
+
+.none {
+  display: none;
+  /* con display:none  Oculta la clase none que es una imagen de cerrar */
+}
+
+/*********************************************   Sitie Style   *************************************************************/
+
+/* personaliza en encabezado en VERSION MOVIL, con posicion 0 abajo */
+.header {
+  position: fixed;
+  left: 0px;
+  /* top: 0; */
+  bottom: 0px;
+  z-index: 999;
+  padding: 1rem;
+  width: 100%;
+  height: var(--header-height); /*4rem= 64px */
+  background-color: var(--second-color);
+}
+/* Distribuye los elementos logo, boton y menu con flexbox centrado en el eje x  */
+.header > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  /* entra a la clase logo, despues entra a la etiqueta enlace "a" */
+
+  /* Personaliza el logo lo pone en negrita, incrementa su fuente a 32px y le da un color rojo*/
+  color: var(--firt-color);
+  font-weight: bold;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+
+                                MEDIAS QUERYS PARA PANTALLA  768 PX
+
+----------------------------------------------------------------------------------------------------------------- */
+@media screen and(min-width:768px) {
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+
+                                MEDIAS QUERYS PARA PANTALLA COMPLETA  1024PX
+
+----------------------------------------------------------------------------------------------------------------- */
+/* con esta media query el encabezado se pone  hacia arriba en pantalla completa y queda fija el encabezado sticky*/
+@media screen and (min-width: 1024px) {
+  .header {
+    position: sticky;
+    top: 0px;
+    padding: 0.5rem;
+    height: calc(var(--header-height)-0.5rem);
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: space-between;
+    align-content: center;
+  }
+}
+
+/*********************************************    HeroeImage *************************************************************/
+.hero-image {
+  background-image: var(--hero-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: var(--hero-attachment);
+  /* hacer 2 contenedores y probar el tamano de la imagen de fondo */
+
+  /* min-height: 100vh; la altura se lo da el hero-image-opacity que hace el mismo efecto que darselo aqui, ya que si lo definimos aqui seria redundante porque se tendria que definir nuevamente en el hero-image-opacity*/
+}
+
+.hero-image-opacity {
+  /* se le aplica el flexbox a esta clase ya que centra la clase heroe-image-content como un elemento  */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--hero-opacity-color);
+}
+/* .hero-image-content{
+display: flex;
+  justify-content: center;
+  align-items: center;
+    text-align: center;
+    width: 100%;
+  min-height: 100vh;
+} */
+.hero-image-title {
+  font-size: 7.5vw;
+  color: var(--hero-text-color);
+}
+
+/*****************************   SECCION ACERCA  
+
+
+*********************/
+progress {
+  width: 100%;
+  height: 1rem;
+  background-color: var(--gray-color);
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--gray-color);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--gray-dark-color);
+}
+
+.progress {
+  margin: 1rem;
+}
+
+.progress > p {
+  /* los parrafos tiene elementos, a estos elementos aplica el flexbox  */
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+/* utilitarias */
+.gray-scale {
+  filter: grayscale(1);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+.section {
+  padding: 2rem 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .text-lg-left {
+    text-align: left;
+  }
+
+  .text-lg-center {
+    text-align: center;
+  }
+
+  .text-lg-right {
+    text-align: right;
+  }
+  .full-lg-screen {
+    width: 100%;
+    min-height: 100vh;
+    /* minima-altura: seria su valor minimo al iniciar */
+  }
+}
+
+/*********************************************   Sitie Style   *************************************************************/
+
+.about > article {
+  margin-bottom: 2rem;
+}
+
+/* ********************************************   Servicios    ***************************************************************/
+/* utilitaria */
+.section-title {
+  /* son la lineas de arriba y abajo  */
+  border-top: thin solid var(--firt-color);
+  border-bottom: thin solid var(--firt-color);
+  margin: 2rem auto;
+  /* el margin sive para centrarlo 2rem arriba y abajo auto a los lados izquierda y derecha*/
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: var(--title-color);
+  width: 250px;
+}
+
+/* style site */
+.service-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.service-card svg {
+  margin-bottom: 1.25rem;
+  fill: var(--firt-color);
+}
+
+.service-card h3 {
+  color: var(--title-color);
+}
+
+/* Version Tablet 768px*/
+
+@media screen and (min-width: 768px) {
+  .services > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    /* 45% representa cada columna, si son 2 columnas seria el 90% de la pantalla y sobra el 10% de pantalla */
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .services .section-title {
+    grid-column: span 2;
+  }
+}
+
+/* Version pantalla completa 1200px*/
+@media screen and (min-width: 1200px) {
+  .services > .container {
+    grid-template-columns: repeat(3, 30%);
+    /* 45% representa cada columna, si son 2 columnas seria el 90% de la pantalla y sobra el 10% de pantalla */
+  }
+
+  .services .section-title {
+    grid-column: span 3;
+  }
+}
+
+/* ************************* PORTAFOLIO************* */
+
+/* portfolio-card es padre */
+/* para dibujar el contenedor padre */
+.portfolio-card {
+  position: relative;
+  display: block;
+  /* se le aplica display:block para que se comporte como elemento de bloque,ya que la etiqueta a es un elemento de linea */
+  width: 100%;
+  margin: 0 auto;
+  background-color: #509ee3;
+}
+
+portfolio-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* tarjeta informativa es hija */
+/* para dibujar la tarjeta */
+.portfolio-card-info {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--firt-alpha-color);
+  color: var(--white-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+/* para dibujar el borde,darle el ancho y alto y el color blanco */
+.portfolio-card-info > div {
+  padding: 1rem;
+  border: thin solid var(--white-color);
+  width: 100%;
+  height: 100%;
+}
+
+/* es importante agregar un espacio entre las 2 clases  */
+.portfolio-card:hover .portfolio-card-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (min-width: 768px) {
+  /* PANTALLA A 780PX */
+
+  .portfolio > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  .portfolio .section-title {
+    grid-column: span 2;
+  }
+}
+
+/* PANTALLA A 1200PX */
+@media screen and (min-width: 1200px) {
+  .portfolio > .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .portfolio .section-title {
+    grid-column: span 3;
+  }
+}
+
+/**********************  MODAL  *******************/
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 00px;
+  right: 00px;
+  bottom: 00px;
+  left: 00px;
+  display: flex;
+  /* le aplica flex a su hijo modal-content que es una div */
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: var(--black-alpha-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #509ee3;
+}
+
+/* El boton Cerrar controla su posicion */
+.modal-close {
+  position: absolute;
+  top: 0.2rem;
+  right: 1rem;
+}
+
+/* el boton lo hace mas grande */
+.modal-close svg {
+  width: 4rem;
+  height: 4rem;
+  fill: var(--firt-color);
+}
+
+/* .modal#trabajo-1:target, 
+.modal#trabajo-2:target  */
+.modal[id|="trabajo"]:target {
+  /* cuando presione sobre la imagen, muestra el modal */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* *************************SITE STYLES  ********** */
+
+.portfolio-modal {
+  padding: 1rem;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-color);
+}
+
+/* para dibujar la linea del titulo  */
+.portfolio-modal h3 {
+  border-bottom: 5px solid var(--firt-color);
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+  color: var(--title-color);
+}
+
+.portfolio-details {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-auto-rows: 2rem;
+}
+
+.portfolio-details b {
+  color: var(--firt-color);
+}
+
+/* PANTALLA A TABLET 780px */
+.portfolio-modal {
+  flex-direction: row;
+  max-width: 800px;
+}
+
+.portfolio-info {
+  margin-left: 1rem;
+  align-items: center;
+}
+
+/***************************************** Testimonios *********************************************************/
+/* utilities */
+.avatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.text-first-color {
+  color: var(--firt-color);
+}
+
+/* Componente carrusel */
+.carousel {
+  margin: 2rem auto;
+  padding: 2rem 0;
+  max-width: 800px;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: var(--carousel-bg-color);
+}
+
+.carousel input {
+  display: none;
+}
+
+.carousel label {
+  border: medium solid var(--gray-dark-color);
+  border-radius: 50%;
+  margin: 0 0.25rem;
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+}
+
+#slide-1:checked ~ .slides {
+  transform: translateX(0%);
+}
+
+#slide-2:checked ~ .slides {
+  transform: translateX(-25%);
+}
+
+#slide-3:checked ~ .slides {
+  transform: translateX(-50%);
+}
+
+#slide-4:checked ~ .slides {
+  transform: translateX(-75%);
+}
+
+#slide-1:checked ~ .slides-nav label#dot-1,
+#slide-2:checked ~ .slides-nav label#dot-2,
+#slide-3:checked ~ .slides-nav label#dot-3,
+#slide-4:checked ~ .slides-nav label#dot-4 {
+  background-color: var(--gray-dark-color);
+}
+
+.carousel .slides {
+  padding-left: 0;
+  width: 400%;
+  display: flex;
+  list-style: none;
+  transition: transform 0.5s ease-in-out;
+  animation: carousel-slide 12s ease-in-out 3s;
+  animation: carousel-slide 12s ease-in-out;
+}
+
+@keyframes carousel-slide {
+  0% {
+    transform: translateX(0%);
+  }
+
+  25% {
+    transform: translateX(-25%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-75%);
+  }
+}
+
+/***************************************** Contact *********************************************************/
+
+/*********************************************   Sitie Style   *************************************************************/
+
+.contact-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 100%;
+  height: 144px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact-card > svg {
+  fill: var(--firt-color);
+  width: 2rem;
+  height: 2rem;
+}
+
+/* en la clase contact entra en la etiqueta small y aplica los siguientes estilos */
+.contact-card > small {
+  margin-top: -1rem;
+}
+
+.social-media a {
+  padding: 0 0.4rem;
+  text-decoration: none;
+}
+
+.social-media svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+
+                                MEDIAS QUERYS PARA PANTALLA  768 PX
+
+----------------------------------------------------------------------------------------------------------------- */
+/* se repite las medias queries solo por cuestion de ordenamientos, pero con definirla una sola vez es suficiente, no es necesario definirlo varias veces */
+
+/* Version Tablet 768px*/
+
+@media screen and (min-width: 768px) {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+     justify-content: space-between;
+  }
+}
+
+/************************* Contact Form ****************/
+.contact-form {
+  /* 2rem arriba y abajo y automatico a los lados left y rigth */
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 800px;
+}
+
+.contact-form > * {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 0.85rem;
+  font-family: var(--font);
+}
+
+
+.contact-form input {
+  border: 0;
+  border-bottom: thin solid var(--gray-dark-color);
+  padding-left: 0;
+}
+
+.contact-form textarea {
+  border: thin solid var(--gray-dark-color);
+  resize: none;
+}
+
+.contact-form input[type="submit"] {
+  margin-top: 0;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.contact-form input[type="submit"]:hover {
+  opacity: 0.75;
+}
+
+.contact-form *::placeholder {
+  color: var(--gray-dark-color);
+}
+
+/**************************************  Ventana Modal */
+.modal#gracias:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact-form-response {
+  padding: 1rem;
+  width: 400px;
+  text-align: center;
+  background-color: var(--white-color);
+}
+
+.contact-form-response svg {
+  margin-top: 2rem;
+  width: 4rem;
+  height: 4rem;
+  fill: var(--firt-color);
+}
+
+.none {
+  display: none;
+  /* con display:none  Oculta la clase none que es una imagen de cerrar */
+}
+
+@media screen and (min-width: 1024px) {
+  .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+  }
+
+  .contact-form textarea,
+  .contact-form-loader
+   {
+    /* grid-column: span 2; */
+    grid-column: span 2;  
+  }
+  
+  .contact-form input[type="submit"] {
+    margin-left: 0;
+  }
+}
+
+
+/* min 5:32 */

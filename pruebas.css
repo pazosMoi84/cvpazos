@@ -1,0 +1,35 @@
+.hijos-directos >li{
+  background-color: blueviolet;
+}
+
+/* .hijos-descendientes b{
+  background-color: brown;
+} */
+
+
+
+/* Estas 2 formas son iguales */
+.container .hijos-descendientes b{
+  background-color: aquamarine;
+}
+.hijos-descendientes b{
+  background-color: beige;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+
+
+ 
+ 
+  
